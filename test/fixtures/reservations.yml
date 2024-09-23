@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  bicycle: one
+  start_time: 2024-09-23 18:10:56
+  end_time: 2024-09-23 18:10:56
+  purpose: MyString
+  status: MyString
+
+two:
+  employee: two
+  bicycle: two
+  start_time: 2024-09-23 18:10:56
+  end_time: 2024-09-23 18:10:56
+  purpose: MyString
+  status: MyString
