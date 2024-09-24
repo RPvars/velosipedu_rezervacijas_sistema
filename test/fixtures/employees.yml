@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
-  department: MyString
-  employee_id: MyString
+  name: John Doe
+  email: john@example.com
+  department: IT
+  employee_id: JD001
 
 two:
-  name: MyString
-  email: MyString
-  department: MyString
-  employee_id: MyString
+  name: Jane Smith
+  email: jane@example.com
+  department: HR
+  employee_id: JS001
