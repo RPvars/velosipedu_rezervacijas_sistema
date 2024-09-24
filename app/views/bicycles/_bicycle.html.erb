@@ -1,22 +1,43 @@
 <div id="<%= dom_id bicycle %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Model:</strong>
-    <%= bicycle.model %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= bicycle.status %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Battery level:</strong>
-    <%= bicycle.battery_level %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Last maintenance:</strong>
-    <%= bicycle.last_maintenance %>
-  </p>
-
+  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <dl class="sm:divide-y sm:divide-gray-200">
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Model</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= bicycle.model %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Status</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+            <%= case bicycle.status
+                when 'available' then 'bg-green-100 text-green-800'
+                when 'reserved' then 'bg-yellow-100 text-yellow-800'
+                when 'in_repair' then 'bg-red-100 text-red-800'
+                else 'bg-gray-100 text-gray-800'
+                end %>">
+            <%= bicycle.status.capitalize %>
+          </span>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Battery Level</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <div class="relative pt-1">
+            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+              <div style="width:<%= bicycle.battery_level %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+            </div>
+          </div>
+          <%= bicycle.battery_level %>%
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Last Maintenance</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= bicycle.last_maintenance.strftime("%B %d, %Y") %>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>

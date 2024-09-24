@@ -1,32 +1,56 @@
 <div id="<%= dom_id reservation %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Employee:</strong>
-    <%= reservation.employee_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Bicycle:</strong>
-    <%= reservation.bicycle_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Start time:</strong>
-    <%= reservation.start_time %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">End time:</strong>
-    <%= reservation.end_time %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Purpose:</strong>
-    <%= reservation.purpose %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= reservation.status %>
-  </p>
-
+  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <dl class="sm:divide-y sm:divide-gray-200">
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Employee</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= reservation.employee.name %> (ID: <%= reservation.employee_id %>)
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Bicycle</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= reservation.bicycle.model %> (ID: <%= reservation.bicycle_id %>)
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Start time</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= reservation.start_time.strftime("%B %d, %Y at %I:%M %p") %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">End time</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= reservation.end_time.strftime("%B %d, %Y at %I:%M %p") %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Duration</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= distance_of_time_in_words(reservation.start_time, reservation.end_time) %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Purpose</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= reservation.purpose %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Status</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+            <%= case reservation.status
+                when 'active' then 'bg-green-100 text-green-800'
+                when 'completed' then 'bg-blue-100 text-blue-800'
+                when 'cancelled' then 'bg-red-100 text-red-800'
+                else 'bg-gray-100 text-gray-800'
+                end %>">
+            <%= reservation.status.capitalize %>
+          </span>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>
