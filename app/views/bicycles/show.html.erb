@@ -8,10 +8,10 @@
   <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Bicycle Details
+        <%= t('bicycles.details') %>
       </h3>
       <p class="mt-1 max-w-2xl text-sm text-gray-500">
-        Bicycle ID: <%= @bicycle.id %>
+        <%= t('bicycles.bicycle_id', id: @bicycle.id) %>
       </p>
     </div>
 
@@ -19,8 +19,8 @@
   </div>
   
   <div class="mt-6 flex justify-end space-x-3">
-    <%= link_to "Edit this bicycle", edit_bicycle_path(@bicycle), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-    <%= link_to "Back to bicycles", bicycles_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-    <%= button_to "Destroy this bicycle", @bicycle, method: :delete, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500", data: { turbo_confirm: "Are you sure you want to delete this bicycle?" } %>
+    <%= link_to t('common.edit'), edit_bicycle_path(@bicycle), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= link_to t('common.back'), bicycles_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= button_to t('common.destroy'), @bicycle, method: :delete, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500", data: { turbo_confirm: t('common.confirm_destroy') } %>
   </div>
 </div>

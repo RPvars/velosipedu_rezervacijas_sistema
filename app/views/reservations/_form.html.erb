@@ -1,7 +1,9 @@
 <%= form_with(model: reservation, class: "space-y-6") do |form| %>
   <% if reservation.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 rounded-md mb-4">
-      <h2 class="text-lg font-medium mb-2"><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+      <h2 class="text-lg font-medium mb-2">
+        <%= t('errors.template.header', count: reservation.errors.count, model: Reservation.model_name.human) %>
+      </h2>
       <ul class="list-disc list-inside">
         <% reservation.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,36 +13,40 @@
   <% end %>
 
   <div>
-    <%= form.label :employee_id, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.collection_select :employee_id, Employee.all, :id, :name, {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    <%= form.label :employee_id, t('activerecord.attributes.reservation.employee'), class: "block text-sm font-medium text-gray-700" %>
+    <%= form.collection_select :employee_id, Employee.all, :id, :name, { prompt: t('helpers.select.prompt') }, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
   </div>
 
   <div>
-    <%= form.label :bicycle_id, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.collection_select :bicycle_id, Bicycle.all, :id, :model, {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    <%= form.label :bicycle_id, t('activerecord.attributes.reservation.bicycle'), class: "block text-sm font-medium text-gray-700" %>
+    <%= form.collection_select :bicycle_id, Bicycle.all, :id, :model, { prompt: t('helpers.select.prompt') }, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
   </div>
 
   <div>
-    <%= form.label :start_time, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :start_time, t('activerecord.attributes.reservation.start_time'), class: "block text-sm font-medium text-gray-700" %>
     <%= form.datetime_field :start_time, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
   </div>
 
   <div>
-    <%= form.label :end_time, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :end_time, t('activerecord.attributes.reservation.end_time'), class: "block text-sm font-medium text-gray-700" %>
     <%= form.datetime_field :end_time, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
   </div>
 
   <div>
-    <%= form.label :purpose, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :purpose, t('activerecord.attributes.reservation.purpose'), class: "block text-sm font-medium text-gray-700" %>
     <%= form.text_field :purpose, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
   </div>
 
   <div>
-    <%= form.label :status, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.select :status, ['active', 'completed', 'cancelled'], {}, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    <%= form.label :status, t('activerecord.attributes.reservation.status'), class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select :status, 
+                    Reservation.statuses.keys.map { |status| [t("statuses.#{status}"), status] },
+                    { prompt: t('helpers.select.prompt') },
+                    class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
   </div>
 
   <div>
-    <%= form.submit class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= form.submit t("helpers.submit.#{reservation.new_record? ? 'create' : 'update'}", model: Reservation.model_name.human), 
+                    class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   </div>
 <% end %>

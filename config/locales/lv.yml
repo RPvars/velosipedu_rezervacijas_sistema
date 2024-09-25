@@ -1,0 +1,119 @@
+lv:
+  application_name: "Elektrisko velosipēdu rezervācijas sistēma"
+
+  common:
+    actions: "Darbības"
+    view: "Skatīt"
+    edit: "Rediģēt"
+    destroy: "Dzēst"
+    back: "Atpakaļ"
+    confirm_destroy: "Vai esat pārliecināts, ka vēlaties dzēst šo ierakstu?"
+    no_records: "Nav atrasts neviens ieraksts."
+
+  employees:
+    title: "Darbinieki"
+    new: "Pievienot jaunu darbinieku"
+    edit: "Rediģēt darbinieku"
+    show: "Skatīt darbinieku"
+    details: "Darbinieka informācija"
+
+  bicycles:
+    title: "Velosipēdi"
+    new: "Pievienot jaunu velosipēdu"
+    edit: "Rediģēt velosipēdu"
+    show: "Skatīt velosipēdu"
+    details: "Velosipēda detaļas"
+    bicycle_id: "Velosipēda ID: %{id}"
+
+  reservations:
+    title: "Rezervācijas"
+    new: "Jauna rezervācija"
+    edit: "Rediģēt rezervāciju"
+    show: "Skatīt rezervāciju"
+    details: "Rezervācijas detaļas"
+    duration: "Ilgums"
+
+  statuses:
+    available: "Pieejams"
+    reserved: "Rezervēts"
+    in_repair: "Remontā"
+    active: "Aktīvs"
+    completed: "Pabeigts"
+    cancelled: "Atcelts"
+
+  helpers:
+    select:
+      prompt: "Lūdzu izvēlieties"
+    submit:
+      create: "Izveidot %{model}"
+      update: "Atjaunināt %{model}"
+
+  activerecord:
+    models:
+      employee: "Darbinieks"
+      bicycle: "Velosipēds"
+      reservation: "Rezervācija"
+    attributes:
+      employee:
+        name: "Vārds"
+        email: "E-pasts"
+        department: "Nodaļa"
+        employee_id: "Darbinieka ID"
+      bicycle:
+        model: "Modelis"
+        status: "Statuss"
+        battery_level: "Akumulatora līmenis"
+        last_maintenance: "Pēdējā apkope"
+      reservation:
+        employee: "Darbinieks"
+        bicycle: "Velosipēds"
+        start_time: "Sākuma laiks"
+        end_time: "Beigu laiks"
+        purpose: "Mērķis"
+        status: "Statuss"
+    errors:
+      messages:
+        record_invalid: "Validācija neizdevās: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Nevar dzēst ierakstu, jo eksistē atkarīgs %{record}"
+          has_many: "Nevar dzēst ierakstu, jo eksistē atkarīgi %{record}"
+
+  errors:
+    template:
+      header:
+        one: "1 kļūda neļāva saglabāt šo %{model}"
+        other: "%{count} kļūdas neļāva saglabāt šo %{model}"
+
+  date:
+    formats:
+      default: "%d.%m.%Y."
+      short: "%d.%m.%y."
+      long: "%Y. gada %e. %B"
+    day_names: [svētdiena, pirmdiena, otrdiena, trešdiena, ceturtdiena, piektdiena, sestdiena]
+    abbr_day_names: [Sv., P., O., T., C., Pk., S.]
+    month_names: [~, janvāris, februāris, marts, aprīlis, maijs, jūnijs, jūlijs, augusts, septembris, oktobris, novembris, decembris]
+    abbr_month_names: [~, janv., febr., marts, apr., maijs, jūn., jūl., aug., sept., okt., nov., dec.]
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y. gada %e. %B, %H:%M"
+      short: "%d.%m.%Y., %H:%M"
+      long: "%Y. gada %e. %B, plkst. %H:%M"
+    am: "priekšpusdiena"
+    pm: "pēcpusdiena"
+
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "apmēram 1 stunda"
+        other: "apmēram %{count} stundas"
+
+  navigation:
+    open_menu: "Atvērt galveno izvēlni"
+    employees: "Darbinieki"
+    bicycles: "Velosipēdi"
+    reservations: "Rezervācijas"

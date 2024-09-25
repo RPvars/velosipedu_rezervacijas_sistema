@@ -1,7 +1,7 @@
 <%= form_with(model: employee, class: "space-y-6") do |form| %>
   <% if employee.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 rounded-md mb-4">
-      <h2 class="text-lg font-medium mb-2"><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <h2 class="text-lg font-medium mb-2"><%= t('errors.template.header', count: employee.errors.count, model: Employee.model_name.human) %></h2>
       <ul class="list-disc list-inside">
         <% employee.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,26 +11,26 @@
   <% end %>
 
   <div>
-    <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :name, t('activerecord.attributes.employee.name'), class: "block text-sm font-medium text-gray-700" %>
     <%= form.text_field :name, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
   </div>
 
   <div>
-    <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :email, t('activerecord.attributes.employee.email'), class: "block text-sm font-medium text-gray-700" %>
     <%= form.email_field :email, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
   </div>
 
   <div>
-    <%= form.label :department, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.select :department, Employee::DEPARTMENTS, { prompt: "Choose a department" }, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    <%= form.label :department, t('activerecord.attributes.employee.department'), class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select :department, Employee::DEPARTMENTS, { prompt: t('helpers.select.prompt') }, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
   </div>
 
   <div>
-    <%= form.label :employee_id, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :employee_id, t('activerecord.attributes.employee.employee_id'), class: "block text-sm font-medium text-gray-700" %>
     <%= form.text_field :employee_id, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
   </div>
 
   <div>
-    <%= form.submit class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= form.submit t("helpers.submit.#{employee.new_record? ? 'create' : 'update'}", model: Employee.model_name.human), class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   </div>
 <% end %>

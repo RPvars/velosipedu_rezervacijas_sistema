@@ -2,43 +2,43 @@
   <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
     <dl class="sm:divide-y sm:divide-gray-200">
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Employee</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('activerecord.attributes.reservation.employee') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= reservation.employee.name %> (ID: <%= reservation.employee_id %>)
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Bicycle</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('activerecord.attributes.reservation.bicycle') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= reservation.bicycle.model %> (ID: <%= reservation.bicycle_id %>)
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Start time</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('activerecord.attributes.reservation.start_time') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= reservation.start_time.strftime("%B %d, %Y at %I:%M %p") %>
+          <%= l(reservation.start_time, format: :long) %>
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">End time</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('activerecord.attributes.reservation.end_time') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= reservation.end_time.strftime("%B %d, %Y at %I:%M %p") %>
+          <%= l(reservation.end_time, format: :long) %>
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Duration</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('reservations.duration') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= distance_of_time_in_words(reservation.start_time, reservation.end_time) %>
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Purpose</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('activerecord.attributes.reservation.purpose') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= reservation.purpose %>
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">Status</dt>
+        <dt class="text-sm font-medium text-gray-500"><%= t('activerecord.attributes.reservation.status') %></dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
             <%= case reservation.status
@@ -47,7 +47,7 @@
                 when 'cancelled' then 'bg-red-100 text-red-800'
                 else 'bg-gray-100 text-gray-800'
                 end %>">
-            <%= reservation.status.capitalize %>
+            <%= t("statuses.#{reservation.status}") %>
           </span>
         </dd>
       </div>
