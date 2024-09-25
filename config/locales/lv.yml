@@ -32,6 +32,12 @@ lv:
     show: "Skatīt rezervāciju"
     details: "Rezervācijas detaļas"
     duration: "Ilgums"
+    start_date: "Sākuma datums"
+    end_date: "Beigu datums"
+    filter: "Filtrēt"
+    download_pdf: "Lejupielādēt PDF"
+    date_range: "Periods: %{start} - %{end}"
+
 
   statuses:
     available: "Pieejams"

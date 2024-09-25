@@ -3,7 +3,25 @@ class ReservationsController < ApplicationController
 
   # GET /reservations or /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.includes(:employee, :bicycle).order(:start_time)
+
+    if params[:start_date].present? || params[:end_date].present?
+      @start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Reservation.minimum(:start_time)&.to_date
+      @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Reservation.maximum(:end_time)&.to_date
+
+      @reservations = @reservations.where(start_time: @start_date.beginning_of_day..@end_date.end_of_day) if @start_date && @end_date
+    end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "rezervacijas_#{@start_date || 'visas'}_#{@end_date || 'visas'}",
+               template: 'reservations/index',
+               layout: 'pdf',
+               page_size: 'A4',
+               encoding: 'UTF-8'
+      end
+    end
   end
 
   # GET /reservations/1 or /reservations/1.json

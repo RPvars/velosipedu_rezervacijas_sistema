@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title><%= t('reservations.title') %></title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .header { margin-bottom: 20px; }
+    .filters { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><%= t('reservations.title') %></h1>
+  </div>
+
+  <div class="filters">
+    <p><%= t('reservations.date_range', start: l(@start_date), end: l(@end_date)) %></p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.reservation.employee') %></th>
+        <th><%= t('activerecord.attributes.reservation.bicycle') %></th>
+        <th><%= t('activerecord.attributes.reservation.start_time') %></th>
+        <th><%= t('activerecord.attributes.reservation.end_time') %></th>
+        <th><%= t('activerecord.attributes.reservation.status') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.employee.name %></td>
+          <td><%= reservation.bicycle.model %></td>
+          <td><%= l(reservation.start_time, format: :short) %></td>
+          <td><%= l(reservation.end_time, format: :short) %></td>
+          <td><%= t("statuses.#{reservation.status}") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

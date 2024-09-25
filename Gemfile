@@ -69,3 +69,6 @@ end
 gem "shadcn-ui", "~> 0.0.15"
 
 gem "tailwindcss-rails", "~> 2.7"
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
