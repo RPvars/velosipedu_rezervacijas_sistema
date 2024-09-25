@@ -17,9 +17,7 @@ employees = [
   { name: "Dace Jansone", email: "dace.jansone@autentica.lv", department: "Accounting", employee_id: "AUT010" }
 ]
 
-employees.each do |employee_data|
-  Employee.create!(employee_data)
-end
+created_employees = employees.map { |employee_data| Employee.create!(employee_data) }
 
 # Create bicycles
 bicycles = [
@@ -28,18 +26,95 @@ bicycles = [
   { model: "Specialized Turbo Vado", status: "in_repair", battery_level: 0, last_maintenance: Date.today }
 ]
 
-bicycles.each do |bicycle_data|
-  Bicycle.create!(bicycle_data)
-end
+created_bicycles = bicycles.map { |bicycle_data| Bicycle.create!(bicycle_data) }
 
 # Create reservations
-Reservation.create!(
-  employee: Employee.first,
-  bicycle: Bicycle.first,
-  start_time: DateTime.now + 1.day,
-  end_time: DateTime.now + 1.day + 2.hours,
-  purpose: "Client meeting",
-  status: "active"
-)
+reservations = [
+  {
+    employee: created_employees.find { |e| e.name == "Līga Kalniņa" },
+    bicycle: created_bicycles.find { |b| b.model == "Giant FastRoad" },
+    start_time: DateTime.now + 2.days,
+    end_time: DateTime.now + 2.days + 3.hours,
+    purpose: "Klienta prezentācija",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Andris Ozoliņš" },
+    bicycle: created_bicycles.find { |b| b.model == "Trek Verve+" },
+    start_time: DateTime.now + 3.days,
+    end_time: DateTime.now + 3.days + 1.hour,
+    purpose: "Piegāde",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Mārtiņš Krūmiņš" },
+    bicycle: created_bicycles.find { |b| b.model == "Giant FastRoad" },
+    start_time: DateTime.now - 1.day,
+    end_time: DateTime.now - 1.day + 4.hours,
+    purpose: "Komandas saliedēšanas pasākums",
+    status: "completed"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Zane Pētersone" },
+    bicycle: created_bicycles.find { |b| b.model == "Trek Verve+" },
+    start_time: DateTime.now + 5.days,
+    end_time: DateTime.now + 5.days + 2.hours,
+    purpose: "Fotogrāfēšana reklāmai",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Kārlis Vītols" },
+    bicycle: created_bicycles.find { |b| b.model == "Giant FastRoad" },
+    start_time: DateTime.now + 1.day,
+    end_time: DateTime.now + 1.day + 5.hours,
+    purpose: "Tikšanās ar potenciālo klientu",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Ilze Liepiņa" },
+    bicycle: created_bicycles.find { |b| b.model == "Trek Verve+" },
+    start_time: DateTime.now + 4.days,
+    end_time: DateTime.now + 4.days + 1.hour,
+    purpose: "Dokumentu nogādāšana",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Raimonds Siliņš" },
+    bicycle: created_bicycles.find { |b| b.model == "Giant FastRoad" },
+    start_time: DateTime.now - 2.days,
+    end_time: DateTime.now - 2.days + 3.hours,
+    purpose: "Biznesa brokastis",
+    status: "completed"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Dace Jansone" },
+    bicycle: created_bicycles.find { |b| b.model == "Trek Verve+" },
+    start_time: DateTime.now + 6.days,
+    end_time: DateTime.now + 6.days + 4.hours,
+    purpose: "Konference",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Jānis Bērziņš" },
+    bicycle: created_bicycles.find { |b| b.model == "Giant FastRoad" },
+    start_time: DateTime.now + 7.days,
+    end_time: DateTime.now + 7.days + 2.hours,
+    purpose: "Tehniskā apskate",
+    status: "active"
+  },
+  {
+    employee: created_employees.find { |e| e.name == "Inga Zariņa" },
+    bicycle: created_bicycles.find { |b| b.model == "Trek Verve+" },
+    start_time: DateTime.now - 3.days,
+    end_time: DateTime.now - 3.days + 1.hour,
+    purpose: "Intervija ar kandidātu",
+    status: "cancelled"
+  }
+]
+
+# Create the reservations
+reservations.each do |reservation_data|
+  Reservation.create!(reservation_data)
+end
 
 puts "Seed data has been added successfully!"
