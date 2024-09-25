@@ -1,4 +1,7 @@
 class Bicycle < ApplicationRecord
+
+  enum status: { available: 'available', reserved: 'reserved', in_repair: 'in_repair' }
+
   has_many :reservations
   has_many :employees, through: :reservations
 

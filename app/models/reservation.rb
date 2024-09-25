@@ -2,6 +2,12 @@ class Reservation < ApplicationRecord
   belongs_to :employee
   belongs_to :bicycle
 
+  enum status: {
+    active: 'active',
+    completed: 'completed',
+    cancelled: 'cancelled'
+  }
+
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :purpose, presence: true
