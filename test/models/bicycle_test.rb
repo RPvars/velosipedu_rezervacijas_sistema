@@ -30,10 +30,20 @@ class BicycleTest < ActiveSupport::TestCase
       @bicycle.status = status
       assert @bicycle.valid?, "#{status} should be a valid status"
     end
-
-    @bicycle.status = "invalid_status"
-    assert_not @bicycle.valid?
   end
+  
+  test "status should not be invalid" do
+    assert_raises(ArgumentError) do
+      @bicycle.status = "invalid_status"
+    end
+  end
+  
+  test "status should not be nil" do
+    @bicycle.status = nil
+    assert_not @bicycle.valid?
+    assert_includes @bicycle.errors[:status], I18n.t('errors.messages.blank')
+  end
+
 
   test "battery_level should be present" do
     @bicycle.battery_level = nil

@@ -3,6 +3,8 @@ require "test_helper"
 class BicyclesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @bicycle = bicycles(:one)
+    # Notīrām visas saistītās rezervācijas
+    @bicycle.reservations.destroy_all
   end
 
   test "should get index" do

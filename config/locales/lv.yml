@@ -77,8 +77,21 @@ lv:
         restrict_dependent_destroy:
           has_one: "Nevar dzēst ierakstu, jo eksistē atkarīgs %{record}"
           has_many: "Nevar dzēst ierakstu, jo eksistē atkarīgi %{record}"
+          taken: "jau ir aizņemts"
+      models:
+        bicycle:
+          attributes:
+            last_maintenance:
+              in_future: "nevar būt nākotnē"
 
   errors:
+    messages:
+      blank: "nevar būt tukšs"
+      inclusion: "nav iekļauts sarakstā"
+      not_a_number: "nav skaitlis"
+      greater_than_or_equal_to: "jābūt lielākam vai vienādam ar %{count}"
+      less_than_or_equal_to: "jābūt mazākam vai vienādam ar %{count}"
+      taken: "jau ir aizņemts"
     template:
       header:
         one: "1 kļūda neļāva saglabāt šo %{model}"

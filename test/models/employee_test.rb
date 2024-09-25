@@ -15,32 +15,27 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test "name should be present" do
-    @employee.name = "   "
+    @employee.name = ""
     assert_not @employee.valid?
-    assert_includes @employee.errors[:name], "can't be blank"
+    assert_includes @employee.errors[:name], I18n.t('errors.messages.blank')
   end
 
   test "email should be unique" do
     duplicate_employee = @employee.dup
     @employee.save
     assert_not duplicate_employee.valid?
-    assert_includes duplicate_employee.errors[:email], "has already been taken"
+    assert_includes duplicate_employee.errors[:email], I18n.t('errors.messages.taken')
   end
 
   test "employee_id should be present and unique" do
-    @employee.employee_id = "   "
+    @employee.employee_id = ""
     assert_not @employee.valid?
-    assert_includes @employee.errors[:employee_id], "can't be blank"
+    assert_includes @employee.errors[:employee_id], I18n.t('errors.messages.blank')
 
-    @employee.employee_id = "JB001"
+    @employee.employee_id = "EMP123"
     @employee.save
-    duplicate_employee = Employee.new(
-      name: "Anna Kalniņa",
-      email: "anna@example.com",
-      department: "HR",
-      employee_id: "JB001"
-    )
+    duplicate_employee = Employee.new(name: "Jane Doe", email: "jane@example.com", department: "HR", employee_id: "EMP123")
     assert_not duplicate_employee.valid?
-    assert_includes duplicate_employee.errors[:employee_id], "has already been taken"
+    assert_includes duplicate_employee.errors[:employee_id], I18n.t('errors.messages.taken')
   end
 end
