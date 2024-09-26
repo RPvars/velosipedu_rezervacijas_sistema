@@ -69,8 +69,14 @@ class BicycleTest < ActiveSupport::TestCase
     assert_not @bicycle.valid?
   end
 
-  test "last_maintenance should not be in the future" do
-    @bicycle.last_maintenance = Date.tomorrow
-    assert_not @bicycle.valid?
+  test "last_maintenance_should_not_be_in_the_future" do
+    bicycle = Bicycle.new(
+      model: "Test Model",
+      status: :available,
+      battery_level: 100,
+      last_maintenance: Date.tomorrow
+    )
+    assert_not bicycle.valid?
+    assert_includes bicycle.errors[:last_maintenance], "nevar būt nākotnē"
   end
 end

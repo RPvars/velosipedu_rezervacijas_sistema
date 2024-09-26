@@ -1,13 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  model: "Elektro X1"
+  model: "Modelis A"
   status: "available"
   battery_level: 100
-  last_maintenance: 2024-09-23
+  last_maintenance: <%= Date.today %>
 
 two:
-  model: "City Rider"
+  model: "Modelis B"
   status: "reserved"
   battery_level: 80
-  last_maintenance: 2024-09-22
+  last_maintenance: <%= Date.today - 1.week %>
+
+available_bicycle:
+  model: "Modelis C"
+  status: "available"
+  battery_level: 90
+  last_maintenance: <%= Date.today - 1.day %>

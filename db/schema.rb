@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_23_151056) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_25_211102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_151056) do
     t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "notification_sent", default: false
     t.index ["bicycle_id"], name: "index_reservations_on_bicycle_id"
     t.index ["employee_id"], name: "index_reservations_on_employee_id"
     t.check_constraint "end_time > start_time", name: "check_end_time_after_start_time"

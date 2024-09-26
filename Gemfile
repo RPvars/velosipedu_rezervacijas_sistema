@@ -72,3 +72,5 @@ gem "tailwindcss-rails", "~> 2.7"
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+gem 'whenever', require: false

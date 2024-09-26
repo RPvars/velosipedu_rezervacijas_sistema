@@ -8,4 +8,7 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get 'reservations/:id/cancel', to: 'reservation_cancellations#cancel', as: 'reservation_cancellation'
+
+
 end

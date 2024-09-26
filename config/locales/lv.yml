@@ -37,6 +37,8 @@ lv:
     filter: "Filtrēt"
     download_pdf: "Lejupielādēt PDF"
     date_range: "Periods: %{start} - %{end}"
+    filtered_date_range: "Rezervācijas no %{start} līdz %{end}"
+    all_reservations: "Visas rezervācijas"
 
 
   statuses:
@@ -79,12 +81,20 @@ lv:
         status: "Statuss"
     errors:
       messages:
+        invalid: "nav derīgs"
         record_invalid: "Validācija neizdevās: %{errors}"
         restrict_dependent_destroy:
           has_one: "Nevar dzēst ierakstu, jo eksistē atkarīgs %{record}"
           has_many: "Nevar dzēst ierakstu, jo eksistē atkarīgi %{record}"
           taken: "jau ir aizņemts"
       models:
+        employee:
+          attributes:
+            email:
+              invalid: "nav derīgs"
+            employee_id:
+              blank: "nevar būt tukšs"
+              taken: "jau ir aizņemts"
         bicycle:
           attributes:
             last_maintenance:

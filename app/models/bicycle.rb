@@ -13,8 +13,8 @@ class Bicycle < ApplicationRecord
   private
 
   def last_maintenance_cannot_be_in_the_future
-    if last_maintenance.present? && last_maintenance > Date.today
-      errors.add(:last_maintenance, :in_future)
+    if last_maintenance.present? && last_maintenance > Date.current
+      errors.add(:last_maintenance, "nevar būt nākotnē")
     end
   end
 end

@@ -3,15 +3,15 @@
 one:
   employee: one
   bicycle: one
-  start_time: <%= DateTime.now %>
-  end_time: <%= DateTime.now + 1.hour %>
-  purpose: "Brauciens uz sanāksmi"
+  start_time: <%= Time.current + 1.hour %>
+  end_time: <%= Time.current + 2.hours %>
+  purpose: "Testa brauciens"
   status: "active"
 
 two:
   employee: two
   bicycle: two
-  start_time: <%= DateTime.now + 2.hours %>
-  end_time: <%= DateTime.now + 3.hours %>
-  purpose: "Pusdienu pārtraukums"
+  start_time: <%= Time.current + 2.hours %>
+  end_time: <%= Time.current + 3.hours %>
+  purpose: "Darba brauciens"
   status: "active"

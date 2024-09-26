@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Sveicināts, <%= @employee.name %>!</h1>
+  <p>
+    Atgādinām, ka jums ir rezervēts velosipēds rītdienai.
+  </p>
+  <p>
+    Rezervācijas detaļas:
+    <ul>
+      <li>Velosipēda modelis: <%= @bicycle.model %></li>
+      <li>Sākuma laiks: <%= l @reservation.start_time, format: :long %></li>
+      <li>Beigu laiks: <%= l @reservation.end_time, format: :long %></li>
+      <li>Mērķis: <%= @reservation.purpose %></li>
+    </ul>
+  </p>
+  <p>
+    Ja vēlaties atcelt šo rezervāciju, lūdzu, izmantojiet šo saiti:
+    <%= link_to 'Atcelt rezervāciju', @cancellation_url %>
+  </p>
+  <p>Paldies, ka izmantojat mūsu velosipēdu rezervācijas sistēmu!</p>
+</body>
+</html>
