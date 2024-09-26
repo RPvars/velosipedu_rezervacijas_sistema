@@ -17,9 +17,13 @@
     <h1><%= t('reservations.title') %></h1>
   </div>
 
-  <div class="filters">
-    <p><%= t('reservations.date_range', start: l(@start_date), end: l(@end_date)) %></p>
-  </div>
+<div class="filters">
+  <% if @start_date && @end_date %>
+    <p><%= t('reservations.filtered_date_range', start: l(@start_date), end: l(@end_date)) %></p>
+  <% else %>
+    <p><%= t('reservations.all_reservations') %></p>
+  <% end %>
+</div>
 
   <table>
     <thead>

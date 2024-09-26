@@ -8,8 +8,10 @@ class ReservationsController < ApplicationController
     if params[:start_date].present? || params[:end_date].present?
       @start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Reservation.minimum(:start_time)&.to_date
       @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Reservation.maximum(:end_time)&.to_date
-
       @reservations = @reservations.where(start_time: @start_date.beginning_of_day..@end_date.end_of_day) if @start_date && @end_date
+    else
+      @start_date = Reservation.minimum(:start_time)&.to_date
+      @end_date = Reservation.maximum(:end_time)&.to_date
     end
 
     respond_to do |format|
@@ -23,6 +25,7 @@ class ReservationsController < ApplicationController
       end
     end
   end
+
 
   # GET /reservations/1 or /reservations/1.json
   def show
